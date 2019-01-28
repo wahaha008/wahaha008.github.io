@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="1.1 JVM概念数据类型数据类型可以分为两类：基本类型和引用类型。基本类型包括：byte,short,int,long,char,float,double,Boolean。引用类型包括：类类型，接口类型和数组。 堆与栈 栈是运行时的单位，而堆是存储的单位。     栈解决程序的运行问题，即程序如何执行，或者说如何处理数据；堆解决的是数据存储的问题，即数据怎么放、放在哪儿。    在Java中一个">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-21T05:48:57.985Z">
+<meta property="og:updated_time" content="2018-12-21T05:50:45.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM笔记">
 <meta name="twitter:description" content="1.1 JVM概念数据类型数据类型可以分为两类：基本类型和引用类型。基本类型包括：byte,short,int,long,char,float,double,Boolean。引用类型包括：类类型，接口类型和数组。 堆与栈 栈是运行时的单位，而堆是存储的单位。     栈解决程序的运行问题，即程序如何执行，或者说如何处理数据；堆解决的是数据存储的问题，即数据怎么放、放在哪儿。    在Java中一个">
@@ -185,12 +185,9 @@
 }
 </code></pre>
 <p>其大小为：空对象大小(8byte)+int大小(4byte)+Boolean大小(1byte)+空Object引用的大小<br>(4byte)=17byte。但是因为Java在对对象内存分配时都是以8的整数倍来分，因此大于17byte的最接<br>近8的整数倍的是24，因此此对象的大小为24byte。<br>    这里需要注意一下基本类型的包装类型的大小。因为这种包装类型已经成为对象了，因此需要把他们作为对<br>象来看待。包装类型的大小至少是12byte（声明一个空Object至少需要的空间），而且12byte没有包含任何有<br>效信息，同时，因为Java对象大小是8的整数倍，因此一个基本类型包装类的大小至少是16byte。这个内存占<br>用是很恐怖的，它是使用基本类型的N倍（N&gt;2），有些类型的内存占用更是夸张（随便想下就知道了）。因<br>此，可能的话应尽量少使用包装类。在JDK5.0以后，因为加入了自动类型装换，因此，Java虚拟机会在存储方<br>面进行相应的优化。</p>
-<h4 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h4><h5 id="强引用"><a href="#强引用" class="headerlink" title="强引用"></a>强引用</h5><pre><code>就是我们一般声明对象是时虚拟机生成的引用，强引用环境下，垃圾回收时需要严格判断当前对象是否
-</code></pre><p>被强引用，如果被强引用，则不会被垃圾回收。</p>
-<h5 id="软引用"><a href="#软引用" class="headerlink" title="软引用"></a>软引用</h5><pre><code>软引用一般被做为缓存来使用。与强引用的区别是，软引用在垃圾回收时，虚拟机会根据当前系统的剩
-</code></pre><p>余内存来决定是否对软引用进行回收。如果剩余内存比较紧张，则虚拟机会回收软引用所引用的空间；如果剩<br>余内存相对富裕，则不会进行回收。换句话说，虚拟机在发生OutOfMemory时，肯定是没有软引用存在的。</p>
-<h5 id="弱引用"><a href="#弱引用" class="headerlink" title="弱引用"></a>弱引用</h5><pre><code>弱引用与软引用类似，都是作为缓存来使用。但与软引用不同，弱引用在进行垃圾回收时，是一定会被
-</code></pre><p>回收掉的，因此其生命周期只存在于一个垃圾回收周期内。</p>
+<h4 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h4><h5 id="强引用"><a href="#强引用" class="headerlink" title="强引用"></a>强引用</h5><p>就是我们一般声明对象是时虚拟机生成的引用，强引用环境下，垃圾回收时需要严格判断当前对象是否<br>被强引用，如果被强引用，则不会被垃圾回收。</p>
+<h5 id="软引用"><a href="#软引用" class="headerlink" title="软引用"></a>软引用</h5><p>软引用一般被做为缓存来使用。与强引用的区别是，软引用在垃圾回收时，虚拟机会根据当前系统的剩<br>余内存来决定是否对软引用进行回收。如果剩余内存比较紧张，则虚拟机会回收软引用所引用的空间；如果剩<br>余内存相对富裕，则不会进行回收。换句话说，虚拟机在发生OutOfMemory时，肯定是没有软引用存在的。</p>
+<h5 id="弱引用"><a href="#弱引用" class="headerlink" title="弱引用"></a>弱引用</h5><p>弱引用与软引用类似，都是作为缓存来使用。但与软引用不同，弱引用在进行垃圾回收时，是一定会被<br>回收掉的，因此其生命周期只存在于一个垃圾回收周期内。</p>
 
       
 
@@ -344,7 +341,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 John Doe
+    		&copy; 2019 John Doe
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -474,7 +471,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">加油&lt;br&gt;&lt;br&gt;真好&lt;br&gt;真棒</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">一闪一闪亮晶晶&lt;br&gt;满天都是小精精&lt;br&gt;</div>
   	  	
     	</section>
     
